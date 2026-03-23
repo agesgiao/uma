@@ -15,8 +15,16 @@
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       <!-- 動画アセット -->
       <a-assets>
-        <video id="video" src="uma.mp4" preload="auto" loop playsinline webkit-playsinline crossorigin="anonymous"> 
-        </video>
+<video
+id="video"
+src="uma.mp4"
+preload="auto"
+loop
+muted
+playsinline
+webkit-playsinline
+crossorigin="anonymous">
+</video>
       </a-assets> 
       <!-- ターゲット 0 番 -->
       <a-entity mindar-image-target="targetIndex: 0" id="target"> 
@@ -25,18 +33,22 @@
       </a-entity> 
     </a-scene> 
     
-    <script>
-      const video = document.getElementById("video");
-      const target = document.getElementById("target"); // マーカー認識時
-      target.addEventListener("targetFound", () => { 
-        console.log("target found"); 
-        video.play();
-       }); // マーカーを見失った時 
-      target.addEventListener("targetLost", () => { 
-        console.log("target lost");
-        video.pause(); 
-        video.currentTime = 0;
-        // 最初に戻したい場合 }); 
-    </script> 
+<script>
+const video = document.getElementById("video");
+const target = document.getElementById("target");
+
+// マーカー認識
+target.addEventListener("targetFound", () => {
+  console.log("target found");
+  video.play();
+});
+
+// マーカーを見失った
+target.addEventListener("targetLost", () => {
+  console.log("target lost");
+  video.pause();
+  video.currentTime = 0; // 最初に戻す
+});
+</script>
   </body> 
 </html>
