@@ -1,74 +1,50 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <title>MindAR Video Auto Play</title>
+<meta charset="utf-8" />
+<title>MindAR GIF</title>
 
-  <!-- A-Frame -->
-  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-  <!-- MindAR -->
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+<!-- A-Frame -->
+<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<!-- MindAR -->
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
-  <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+}
+</style>
 </head>
 
 <body>
-  <a-scene
-    mindar-image="imageTargetSrc: targets-uma.mind;"
-    vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false">
 
-    <!-- カメラ -->
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+<a-scene
+mindar-image="imageTargetSrc: targets-uma.mind;"
+vr-mode-ui="enabled: false"
+device-orientation-permission-ui="enabled: false">
 
-    <!-- 動画アセット -->
-    <a-assets>
-      <video
-        id="gif"
-        src="uma1.gif"
-        preload="auto"
-        loop
-        playsinline
-        webkit-playsinline
-        crossorigin="anonymous">
-      </video>
-    </a-assets>
+<a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
-    <!-- ターゲット 0 番 -->
-    <a-entity mindar-image-target="targetIndex: 0" id="target">
-      <!-- 動画を表示する平面 -->
-      <a-plane
-        src="#gif"
-        position="0 0 0"
-        width="1.48"
-        height="1"
-        rotation="0 0 0">
-      </a-plane>
-    </a-entity>
+<!-- GIFアセット -->
+<a-assets>
+  <img id="gif" src="uma1.gif">
+</a-assets>
 
-  </a-scene>
+<!-- ターゲット -->
+<a-entity mindar-image-target="targetIndex:0">
 
-  <script>
-    const video = document.getElementById("video");
-    const target = document.getElementById("target");
+  <a-plane
+    src="#gif"
+    position="0 0 0"
+    width="1.48"
+    height="1"
+    rotation="0 0 0">
+  </a-plane>
 
-    // マーカー認識時
-    target.addEventListener("targetFound", () => {
-      console.log("target found");
-      video.play();
-    });
+</a-entity>
 
-    // マーカーを見失った時
-    target.addEventListener("targetLost", () => {
-      console.log("target lost");
-      video.pause();
-      video.currentTime = 0; // 最初に戻したい場合
-    });
-  </script>
+</a-scene>
+
 </body>
 </html>
