@@ -24,10 +24,12 @@ device-orientation-permission-ui="enabled: false">
 
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
-<a-assets>
-  <img id="gif1" src="uma1.gif">
-  <img id="gif2" src="uma2.gif">
-</a-assets>
+<a-plane
+  src="uma1.gif"
+  position="0 0 0"
+  width="1.48"
+  height="1">
+</a-plane>
 
 <a-entity mindar-image-target="targetIndex:0">
 
@@ -44,12 +46,11 @@ device-orientation-permission-ui="enabled: false">
 </a-scene>
 
 <script>
+const plane = document.querySelector("#plane");
 
-const plane = document.getElementById("plane");
-
-setTimeout(() => {
-  plane.setAttribute("src", "#gif2");
-}, 2000);
+setTimeout(()=>{
+  plane.setAttribute("src","uma2.gif");
+},2000);
 
 </script>
 
