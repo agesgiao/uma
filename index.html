@@ -4,9 +4,7 @@
 <meta charset="utf-8" />
 <title>MindAR GIF</title>
 
-<!-- A-Frame -->
 <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
-<!-- MindAR -->
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
 <style>
@@ -26,25 +24,34 @@ device-orientation-permission-ui="enabled: false">
 
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
-<!-- GIFアセット -->
 <a-assets>
-  <img id="gif" src="uma1.gif">
+  <img id="gif1" src="uma1.gif">
+  <img id="gif2" src="uma2.gif">
 </a-assets>
 
-<!-- ターゲット -->
 <a-entity mindar-image-target="targetIndex:0">
 
   <a-plane
-    src="#gif"
+    id="plane"
+    src="#gif1"
     position="0 0 0"
     width="1.48"
-    height="1"
-    rotation="0 0 0">
+    height="1">
   </a-plane>
 
 </a-entity>
 
 </a-scene>
+
+<script>
+
+const plane = document.getElementById("plane");
+
+setTimeout(() => {
+  plane.setAttribute("src", "#gif2");
+}, 2000);
+
+</script>
 
 </body>
 </html>
